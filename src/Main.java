@@ -5,8 +5,11 @@ public class Main {
         Scanner leitura = new Scanner(System.in);
 
         System.out.println("Bem vindo ao aplicativo de controle finaceiro");
-        System.out.println("Digite o seu nome: ");
+        System.out.print("Digite o seu nome: ");
         String nome = leitura.nextLine();
+
+        System.out.printf("Olá, %s. Informe agora o seu saldo atual: ".formatted(nome));
+        double saldo = leitura.nextDouble();
 
         String menuDeOpcoes = """
                 1- Consultar dados
@@ -21,13 +24,18 @@ public class Main {
         int opcaoValida = leitura.nextInt();
         switch (opcaoValida) {
             case 1:
-                System.out.println("Opção 2 - Consultar dados");
+                System.out.println("Opção 1 - Consultar dados");
+                String consultaDeSaldo = """
+                        Titular: %s
+                        Saldo: %.2f
+                        """.formatted(nome, saldo);
+                System.out.println(consultaDeSaldo);
                 break;
             case 2:
-                System.out.println("Opção 3 - Depositar valor");
+                System.out.println("Opção 2 - Depositar valor");
                 break;
             case 3:
-                System.out.println("Opção 4 - Sacar valor");
+                System.out.println("Opção 3 - Sacar valor");
                 break;
             case 0:
                 System.out.println("Saindo da Aplicação...");
