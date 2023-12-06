@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner leitura = new Scanner(System.in);
+
+        System.out.println("Bem vindo ao aplicativo de controle finaceiro");
+        System.out.println("Digite o seu nome: ");
+        String nome = leitura.nextLine();
+
+        String menuDeOpcoes = """
+                1- Consultar dados
+                2- Depositar valor
+                3- Transferir valor
+                0- Sair
+                """;
+
+        System.out.println(menuDeOpcoes);
+
+        System.out.print("Insira o número da operação que quer realizar: ");
+        int opcaoValida = leitura.nextInt();
+        switch (opcaoValida) {
+            case 1:
+                System.out.println("Opção 2 - Consultar dados");
+                break;
+            case 2:
+                System.out.println("Opção 3 - Depositar valor");
+                break;
+            case 3:
+                System.out.println("Opção 4 - Sacar valor");
+                break;
+            case 0:
+                System.out.println("Saindo da Aplicação...");
+                System.out.println("Tchau, tchau");
+                break;
+            default:
+                System.out.println("Essa não é uma opção válida");
+                System.out.println("Tente novamente");
+                break;
+        }
+    }
+
+}
