@@ -4,13 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner leitura = new Scanner(System.in);
         int opcaoSelecionada = -1;
+        double saldo = 0;
 
         System.out.println("Bem vindo ao aplicativo de controle finaceiro");
+
         System.out.print("Digite o seu nome: ");
         String nome = leitura.nextLine();
-
-        System.out.printf("Olá, %s. Informe agora o seu saldo atual: ".formatted(nome));
-        double saldo = leitura.nextDouble();
 
         String menuDeOpcoes = """
                 1- Consultar dados
@@ -52,7 +51,6 @@ public class Main {
                         saldo -= saque;
                         System.out.println("Saque realizado com sucesso!");
                     }
-
                     break;
                 case 0:
                     System.out.println("Saindo da Aplicação...");
