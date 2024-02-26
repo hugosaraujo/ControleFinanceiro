@@ -2,7 +2,7 @@ package controlefinanceiro.modelos;
 
 public class ContaBancaria {
     private String numeroConta;
-    private double saldo;
+    protected double saldo;
     private String titular;
 
     public String getNumeroConta() {
