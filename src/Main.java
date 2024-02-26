@@ -1,20 +1,24 @@
+import controlefinanceiro.modelos.ContaBancaria;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner leitura = new Scanner(System.in);
+        ContaBancaria conta = new ContaBancaria();
+
         int opcaoSelecionada = -1;
-        double saldo = 0;
 
         System.out.println("Bem vindo ao aplicativo de controle finaceiro");
 
         System.out.print("Digite o seu nome: ");
         String nome = leitura.nextLine();
+        conta.setTitular(nome);
 
         String menuDeOpcoes = """
-                1- Consultar dados
+                1- Consultar saldo
                 2- Depositar valor
-                3- Transferir valor
+                3- Sacar valor
                 0- Sair
                 """;
 
@@ -27,30 +31,20 @@ public class Main {
 
             switch (opcaoSelecionada) {
                 case 1:
-                    System.out.println("Opção 1 - Consultar dados");
-                    String consultaDeSaldo = """
-                        Titular: %s
-                        Saldo: %.2f
-                        """.formatted(nome, saldo);
-                    System.out.println(consultaDeSaldo);
+                    System.out.println("Opção 1 - Consultar saldo");
+                    System.out.println(conta.consultaSaldo());
                     break;
                 case 2:
                     System.out.println("Opção 2 - Depositar valor");
                     System.out.printf("%s, insira o valor que deseja depositar: ".formatted(nome));
-                    double deposito = leitura.nextDouble();
-                    saldo += deposito;
-                    System.out.println("Depósito realizado com sucesso!");
+                    double valorDeposito = leitura.nextDouble();
+                    conta.depositar(valorDeposito);
                     break;
                 case 3:
                     System.out.println("Opção 3 - Sacar valor");
                     System.out.printf("%s, informe o valor do saque: ".formatted(nome));
-                    double saque = leitura.nextDouble();
-                    if (saque > saldo) {
-                        System.out.println("Saldo insuficiente, tente sacar um valor menor");
-                    } else {
-                        saldo -= saque;
-                        System.out.println("Saque realizado com sucesso!");
-                    }
+                    double valorSaque = leitura.nextDouble();
+                    conta.sacar(valorSaque);
                     break;
                 case 0:
                     System.out.println("Saindo da Aplicação...");
@@ -62,6 +56,6 @@ public class Main {
                     break;
             }
         }
-
+        leitura.close();
     }
 }
