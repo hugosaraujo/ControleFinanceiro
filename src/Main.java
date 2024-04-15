@@ -1,5 +1,5 @@
 import controlefinanceiro.modelos.CartaoCredito;
-import controlefinanceiro.modelos.ContaBancaria;
+import controlefinanceiro.modelos.Compra;
 
 import java.util.Scanner;
 
@@ -22,7 +22,6 @@ public class Main {
                 1- Consultar saldo
                 2- Aumentar limite do cartão
                 3- Efetuar compra
-                4- Extrato
                 0- Sair
                 """;
 
@@ -50,10 +49,16 @@ public class Main {
                     meuCartao.aumentarLimite(valorDeposito);
                     break;
                 case 3:
-                    System.out.println("Opção 3 - Sacar valor");
-                    System.out.printf("%s, informe o valor do saque: ".formatted(nome));
-                    double valorSaque = leitura.nextDouble();
-                    //conta.sacar(valorSaque);
+                    System.out.println("Opção 3 - Fazer compra");
+
+                    System.out.print("Informe o nome do produto: ");
+                    String nomeProduto = leitura.next();
+
+                    System.out.print("Informe o preço do produto: ");
+                    double precoProduto = leitura.nextDouble();
+
+                    Compra minhaCompra = new Compra(nomeProduto, precoProduto);
+                    meuCartao.lancaCompra(minhaCompra);
                     break;
                 case 0:
                     System.out.println("Saindo da Aplicação...");
