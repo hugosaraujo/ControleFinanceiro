@@ -27,6 +27,6 @@ public class CartaoCredito {
 
     public void aumentarLimite(double aumento){
         this.limite += aumento;
-        saldo = this.limite;
+        this.saldo += aumento;
     }
 }
