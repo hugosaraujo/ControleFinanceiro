@@ -1,6 +1,8 @@
 import controlefinanceiro.modelos.CartaoCredito;
 import controlefinanceiro.modelos.Compra;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -22,6 +24,7 @@ public class Main {
                 1- Consultar saldo
                 2- Aumentar limite do cartão
                 3- Efetuar compra
+                4- Extrato
                 0- Sair
                 """;
 
@@ -59,6 +62,24 @@ public class Main {
 
                     Compra minhaCompra = new Compra(nomeProduto, precoProduto);
                     meuCartao.lancaCompra(minhaCompra);
+
+                    if (!meuCartao.lancaCompra(minhaCompra)) {
+                        System.out.println("Saldo insuficiente!");
+                        System.out.println("Não foi possível efeturar a compra");
+                        System.out.printf("Saldo: %.2f", meuCartao.getSaldo());
+                        System.out.println();
+                    }
+                    break;
+                case 4:
+                    System.out.println("Opção 4 - Mostrar extrato");
+                    System.out.printf("Saldo Atual = %.2f \n", meuCartao.getSaldo());
+
+                    System.out.println("Compras Realizadas!!!");
+                    Collections.sort(meuCartao.getCompras());
+                    for (Compra c : meuCartao.getCompras()){
+                        System.out.println(c);
+                    }
+                    System.out.println();
                     break;
                 case 0:
                     System.out.println("Saindo da Aplicação...");

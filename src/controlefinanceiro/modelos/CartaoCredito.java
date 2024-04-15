@@ -16,6 +16,7 @@ public class CartaoCredito {
     public boolean lancaCompra(Compra compra){
         if(this.saldo > compra.getValor()){
             this.saldo -= compra.getValor();
+            this.compras.add(compra);
             return true;
         }
         return false;
@@ -28,5 +29,9 @@ public class CartaoCredito {
     public void aumentarLimite(double aumento){
         this.limite += aumento;
         this.saldo += aumento;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
     }
 }
