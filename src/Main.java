@@ -1,3 +1,4 @@
+import controlefinanceiro.modelos.CartaoCredito;
 import controlefinanceiro.modelos.ContaBancaria;
 
 import java.util.Scanner;
@@ -5,20 +6,23 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner leitura = new Scanner(System.in);
-        ContaBancaria conta = new ContaBancaria();
 
         int opcaoSelecionada = -1;
 
-        System.out.println("Bem vindo ao aplicativo de controle finaceiro");
+        System.out.println("Bem vindo ao aplicativo de controle de gastos do cartão");
 
-        System.out.print("Digite o seu nome: ");
+        System.out.print("Antes de qualquer coisa, precisamos do seu nome: ");
         String nome = leitura.nextLine();
-        conta.setTitular(nome);
+
+        System.out.print("Insira o limite do cartão: ");
+        double limiteCartao = leitura.nextDouble();
+        CartaoCredito meuCartao = new CartaoCredito(limiteCartao);
 
         String menuDeOpcoes = """
                 1- Consultar saldo
-                2- Depositar valor
-                3- Sacar valor
+                2- Aumentar limite do cartão
+                3- Efetuar compra
+                4- Extrato
                 0- Sair
                 """;
 
@@ -32,19 +36,24 @@ public class Main {
             switch (opcaoSelecionada) {
                 case 1:
                     System.out.println("Opção 1 - Consultar saldo");
-                    System.out.println(conta.consultaSaldo());
+                    String saldoAtual = """
+                            ***********************
+                            Saldo de %S: %.2f;
+                            ***********************
+                            """.formatted(nome, meuCartao.getSaldo());
+                    System.out.println(saldoAtual);
                     break;
                 case 2:
-                    System.out.println("Opção 2 - Depositar valor");
+                    System.out.println("Opção 2 - Aumentar limite do Cartão");
                     System.out.printf("%s, insira o valor que deseja depositar: ".formatted(nome));
                     double valorDeposito = leitura.nextDouble();
-                    conta.depositar(valorDeposito);
+                    meuCartao.aumentarLimite(valorDeposito);
                     break;
                 case 3:
                     System.out.println("Opção 3 - Sacar valor");
                     System.out.printf("%s, informe o valor do saque: ".formatted(nome));
                     double valorSaque = leitura.nextDouble();
-                    conta.sacar(valorSaque);
+                    //conta.sacar(valorSaque);
                     break;
                 case 0:
                     System.out.println("Saindo da Aplicação...");
